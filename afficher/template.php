@@ -11,6 +11,7 @@
     <li><a href="index.php?action=listJoueur"> joueur</a></li>
     <li><a href="index.php?action=listEquipe"> Equipe</a></li>
     <li><a href="index.php?action=addJoueur"> Ajouter Joueur</a></li>
+    <li><a href="index.php?action=addEquipe"> Ajouter Equipe</a></li>
     
     </nav>
     

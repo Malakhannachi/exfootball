@@ -19,6 +19,7 @@ if(isset($_GET['action']))
         case "listEquipeJoueur":$controleur->listEquipeJoueur($id); break;
         case "listJoueurEquipe":$controleur->listJoueurEquipe($id); break;
         case "addJoueur":$controleur->addJoueur(); break;
+        case "addEquipe":$controleur->addEquipe(); break;
            
     }
 }

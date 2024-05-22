@@ -73,4 +73,25 @@ class Controleur
     }
     require "afficher/addJoueur.php";
 }
+public function addEquipe()
+{
+    $pdo = Connect:: seConnecter();
+    if (isset($_POST["submit"])) {
+        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $date_Cr = filter_input(INPUT_POST, "date_Cr");
+        $id_pays = filter_input(INPUT_POST, "id_pays");
+        if (!empty($nom_J) && !empty($prenom) && !empty($date_N) && !empty($id_pays)) {
+            $requeteJoueur = $pdo->prepare("
+                INSERT INTO joueur(nom, date_Cr, id_pays)
+                VALUES (:nom,:date_Cr,:id_pays)");
+                $requeteJoueur->execute([
+                    "nom" => $nom,
+                    "date_Cr" => $date_Cr,
+                    "id_pays" => $id_pays]);
+                    
+    }
+    
+}
+require "afficher/addEquipe.php";
+}
 }
