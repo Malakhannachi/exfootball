@@ -7,11 +7,11 @@ spl_autoload_register(function ($class_name) {
     require $class_name . '.php';
 });
 
-$controleur = new Controleur();
-$id = isset($_GET['id']) ? $_GET["id"] : null;
+$controleur = new Controleur(); 
 
+$id = isset($_GET['id']) ? $_GET["id"] : null; // recuperer l'id
 
-if(isset($_GET['action'])) 
+if(isset($_GET['action']))  // verefier de clique sur un bouton
 {
     switch($_GET['action']) {
         case "listJoueur":$controleur->listJoueur(); break;
