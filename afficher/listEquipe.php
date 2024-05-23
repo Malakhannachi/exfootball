@@ -1,5 +1,5 @@
 <?php ob_start(); ?> <!-- contenu de la page -->
-
+<h1>Liste des equipes</h1>
 <table class="table">
     <thead>
         <tr>
@@ -23,7 +23,7 @@
     </tbody>
 </table>
 <?php
-
+$titre = "liste des equipes ";
 $contenu = ob_get_clean();
 
 require 'template.php';

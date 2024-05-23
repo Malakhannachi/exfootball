@@ -60,9 +60,9 @@ class Controleur
         if (isset($_POST["submit"])) {
             // var_dump($_POST);die;
             $nom_J = filter_input(INPUT_POST, "nom_J", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $prenom = filter_input(INPUT_POST, "prenom");
-            $date_N = filter_input(INPUT_POST, "date_N");
-            $id_pays = filter_input(INPUT_POST, "id_pays");
+            $prenom = filter_input(INPUT_POST, "prenom",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date_N = filter_input(INPUT_POST, "date_N",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $id_pays = filter_input(INPUT_POST, "id_pays",FILTER_SANITIZE_NUMBER_FLOAT);
             if ($nom_J && $prenom && $date_N) {
                 //ar_dump($nom_J, $prenom, $date_N, $id_pays); die;
                 $requeteJoueur = $pdo->prepare("
@@ -77,8 +77,7 @@ class Controleur
         }
         
     }
-    
-                
+
     $id_pays = $pdo->query("SELECT * FROM pays");         
             
     require "afficher/addJoueur.php";
@@ -88,9 +87,9 @@ public function addEquipe()
 {
     $pdo = Connect:: seConnecter();
     if (isset($_POST["submit"])) {
-        $nom = filter_input(INPUT_POST, "nom");
-        $date_Cr = filter_input(INPUT_POST, "date_Cr");
-        $id_pays = filter_input(INPUT_POST, "id_pays");
+        $nom = filter_input(INPUT_POST, "nom",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $date_Cr = filter_input(INPUT_POST, "date_Cr",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id_pays = filter_input(INPUT_POST, "id_pays",FILTER_SANITIZE_NUMBER_FLOAT);
         if (($nom) &&($date_Cr) && ($id_pays)) {
             // var_dump($id_pays);die;
             //var_dump($nom, $date_Cr, $id_pays);
@@ -108,4 +107,32 @@ public function addEquipe()
 $id_pays = $pdo->query("SELECT * FROM pays");
 require "afficher/addEquipe.php";
 }
+    public function rajout(){
+        $pdo = Connect:: seConnecter();
+        if(isset($_POST["submit"])){
+            $nom_J = filter_input(INPUT_POST, "id_joueur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $nom = filter_input(INPUT_POST, "id_equipe",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if ($nom_J && $nom) { //pour ne pas pouvoir rajouter 2 fois le même joueur dans la même equipe
+                $requete = $pdo->prepare("
+                    INSERT INTO jouer (id_joueur, id_equipe, date_rejoint)      
+                    VALUES (:nom_J,:nom,:date_rejoint)");
+                    $requete->execute([
+                        "nom_J" => $nom_J,
+                        "nom" => $nom,
+                        "date_rejoint" => date("Y-m-d")]);
+            }
+        }
+        $id_joueur = $pdo->query("SELECT * FROM joueur");
+        $id_equipe = $pdo->query("SELECT * FROM equipe");
+        require "afficher/rajout.php";
+    }
+    public function delJoueur($id) {
+        $pdo = connect:: seConnecter ();
+        $requeteDel = $pdo-> prepare("
+        DELETE FROM jouer
+        WHERE id_joueur = :id");
+        $requeteDel-> execute(["id"=>$id]);
+        
+        header("Location: index.php?action=listJoueur");
+    }
 }

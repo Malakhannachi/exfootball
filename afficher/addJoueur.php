@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-
+<h1>Ajouter un joueur</h1>
 
 <form action="index.php?action=addJoueur" method="post">
     <input type="text" name="nom_J" placeholder="nom">

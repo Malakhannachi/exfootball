@@ -1,5 +1,5 @@
 <?php ob_start(); ?> 
-
+<h1>Ajouter une equipe</h1>
 
 <form action="index.php?action=addEquipe" method="post">
     <input type="text" name="nom" placeholder="nom">
