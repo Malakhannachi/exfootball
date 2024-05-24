@@ -20,9 +20,7 @@
         <button type="button" class="btn-delete">Supprimer</button>
     </a>
                 </td>
-                    
-        
-                    <td><?= $joueur['nom_J'] ?></td>
+                
                     <td><?= $joueur['prenom'] ?></td>
                     <td><?= $joueur['date_N'] ?></td>
                     <td><?= $joueur['id_pays'] ?></td>

@@ -21,6 +21,7 @@ if(isset($_GET['action']))  // verefier de clique sur un bouton
         case "addJoueur":$controleur->addJoueur(); break;
         case "addEquipe":$controleur->addEquipe(); break;
         case "rajout":$controleur->rajout(); break;
+        case "delJoueur":$controleur->delJoueur($id); break;
            
     }
 }

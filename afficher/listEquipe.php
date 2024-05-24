@@ -1,5 +1,5 @@
 <?php ob_start(); ?> <!-- contenu de la page -->
-<h1>Liste des equipes</h1>
+<h1> liste </h1>
 <table class="table">
     <thead>
         <tr>
